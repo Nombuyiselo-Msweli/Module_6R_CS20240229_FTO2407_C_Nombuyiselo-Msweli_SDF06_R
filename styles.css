@@ -21,32 +21,84 @@ body {
 img {
     display: inline-block;
     width: 300px;
-    height: 450px;
+    height: 450px; 
     }
 
 .container{
-    display: flex;
+    display: grid;
 }
 
 /* ===PROFILE SECTION===*/
-.profile {
-    display: flex;
-    flex-direction: row;
+.container > .profile {
+    display: grid;
     gap: 5px;
     margin-left: auto;
     margin-right: auto;
-    
-    /* display: grid;
-    grid-template-rows: repeat(auto, 1fr);
-    grid-template-columns: repeat(4, 1fr); */
+
+    /* grid configuration */
+    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 150px 150px 1fr 1fr 1fr 1fr;
+    gap: 10px;
 }
 
 .container > .profile > .profile-image { 
     border-style: solid;
     border-width: 10px;
     border-color: dark rgb(6, 48, 6);
-    border-radius: 100%;
+    border-radius: 50%;
     align-self: center;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    text-align: center;
+
+    /*shape-outside: circle(50%);
+    border-width: 10px;
+    border-color: dark rgb(6, 48, 6); */
+    /*border-radius: 100%;*/
+}
+
+.container > .profile > .profile-user-settings > .profile-user-name{
+        grid-row-start: 1;
+        grid-column-start: 4;
+        grid-column-end: 5;
+} 
+.container > .profile > .profile-user-settings > .btn-profile-edit-btn{
+        grid-row-start: 2;
+        grid-row-end: 3; 
+        grid-column-start: 6;
+        grid-column-end: -1;
+} 
+.container > .profile > .profile-user-settings > .btn-profile-edit-btn {
+        grid-row-start: 1;
+        /* grid-column-start: ;
+        grid-column-end: ; */ 
+} 
+.container > .profile >.profile-stats{
+        grid-row-start:2;
+        grid-row-end:3;
+        grid-column-start: 3;
+        grid-column-end:5;
+        font-size: medium;
+} 
+.container > .profile >.profile-bio{
+        grid-row-start:3;
+        grid-row-end:4;
+        grid-column-start: 3;
+        grid-column-end:6;
+        font-size: medium;
+} 
+
+/* styling profile stats. removing the visible bullet points & putting the unordered list into a single line */
+ul{
+    list-style-type: none;
+}
+li{
+    display: inline;
+}
+span{
+    font-weight: bold;
 }
 
 
@@ -54,20 +106,15 @@ img {
 /* <=== GALLERY SECTION ===> */ 
 
 /* centering the container of the gallery section */ 
-.container > .gallery{
+.container > .gallery {
     width: max-content;
     height: max-content;
     margin-left: auto;
     margin-right: auto;
 }
 
+/* setting the grid display of the gallery div */
 .gallery {
-
-        /*display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 5px;
-        justify-content: space-evenly; */
 
         display: grid;
         grid-template-rows: repeat(auto, 1fr);
@@ -75,13 +122,65 @@ img {
         gap: 5px;
 
 }
-.gallery-item{
-            overflow: hidden;
+
+/* gallery item hover with stats */ 
+.gallery-item > .img{
+    position: relative;
 }
 
-.gallery-item-info{
-    z-index: 2;
+/* hidding the post stats name from browser rendering*/ 
+.visually-hidden{
+            display: none;
 }
+
+/* post stats overlay on images */
+
+.container > .gallery > .gallery-item > .img{
+    display: block;
+    transition: .5s ease;
+}
+
+.gallery-item-info {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+}
+
+.gallery-item:hover .gallery-image {
+    opacity: 0.5;
+  }
+  
+  .gallery-item:hover .gallery-item-info {
+    opacity: 1;
+  }
+  
+  .gallery-item-likes , .gallery-item-comments {
+    background-color: #171a19e7;
+    color: white;
+    font-size: 16px;
+  }
+
+/* .gallery>.gallery-item:hover {
+.gallery-item-info{
+        position: absolute;
+        background-color: rgba(43, 41, 41, 0.76);
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+        width:300px;
+        height:450px;
+        font-size:large;
+        visibility: visible;
+}
+} */
+
+/* .gallery-item-info > ul li {
+    visibility: hidden;
+} */
+/*.gallery-item{
+            overflow: hidden;
+} */
 
 /* .profile-image{
     grid-row-start: 1;
